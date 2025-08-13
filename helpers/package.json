@@ -1,0 +1,19 @@
+{
+  "name": "fun88-js-helpers",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node getImages.js",
+    "install:firefox": "pnpx playwright install firefox"
+  },
+  "keywords": [
+    "playwright",
+    "web-scrapping"
+  ],
+  "author": "nikitimi",
+  "license": "UNLICENSED",
+  "packageManager": "pnpm@10.12.1",
+  "dependencies": {
+    "playwright": "^1.54.2"
+  }
+}
