@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "start": "node getImages.js",
+    "getFontList": "node getFontList.js",
     "install:firefox": "pnpx playwright install firefox"
   },
   "keywords": [
