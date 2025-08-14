@@ -31,6 +31,9 @@ flutter:
     - assets/images/expandir.webp
     - assets/images/title.webp
     - assets/images/carousel/Bono Bienvenida (2240 x 1120 px).webp
+    - assets/images/pgsoft_68.webp
+    - assets/images/pgsoft_98.webp
+    - assets/images/pgsoft_126.webp
   fonts:
   - family: Inter
     fonts:

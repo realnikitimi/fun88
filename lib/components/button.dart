@@ -7,6 +7,8 @@ class Button extends StatelessWidget {
     this.fontSize,
     this.backgroundColor,
     this.color,
+    this.width,
+    this.icon,
     required this.child,
   });
 
@@ -25,35 +27,86 @@ class Button extends StatelessWidget {
   final Color? color;
   final Color? backgroundColor;
   final dynamic child;
+  final double? width;
+  final Icon? icon;
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      style: _baseButtonStyle.copyWith(
-        backgroundColor: WidgetStatePropertyAll(
-          backgroundColor ?? Colors.transparent,
-        ),
-      ),
-      onPressed: () => debugPrint('Access'),
-      child: <Widget>() {
-        switch (child.runtimeType.toString()) {
-          case "String":
-            return Text(
-              child,
-              softWrap: true,
-              style: TextStyle(
-                fontSize: fontSize ?? 12,
-                fontFamily: 'Poppins',
-                fontWeight: fontWeight ?? FontWeight.w300,
-                color: color ?? Colors.white,
-              ),
-            );
-          case "Icon":
-            return child;
-          default:
-            return SizedBox();
-        }
-      }(),
-    );
+    return icon != null
+        ? TextButton.icon(
+            icon: icon,
+            style: _baseButtonStyle
+                .copyWith(
+                  backgroundColor: WidgetStatePropertyAll(
+                    backgroundColor ?? Colors.transparent,
+                  ),
+                )
+                .merge(
+                  width != null
+                      ? ButtonStyle(
+                          fixedSize: WidgetStatePropertyAll(
+                            Size.fromWidth(width!),
+                          ),
+                        )
+                      : null,
+                ),
+            onPressed: () => debugPrint('Access'),
+            label: <Widget>() {
+              switch (child.runtimeType.toString()) {
+                case "String":
+                  return Text(
+                    child,
+                    softWrap: true,
+                    style: TextStyle(
+                      fontSize: fontSize ?? 12,
+                      fontFamily: 'Poppins',
+                      fontWeight: fontWeight ?? FontWeight.w300,
+                      color: color ?? Colors.white,
+                    ),
+                  );
+                case "Icon":
+                  return child;
+                default:
+                  return SizedBox();
+              }
+            }(),
+          )
+        : TextButton(
+            style: _baseButtonStyle
+                .copyWith(
+                  backgroundColor: WidgetStatePropertyAll(
+                    backgroundColor ?? Colors.transparent,
+                  ),
+                )
+                .merge(
+                  width != null
+                      ? ButtonStyle(
+                          fixedSize: WidgetStatePropertyAll(
+                            Size.fromWidth(width!),
+                          ),
+                        )
+                      : null,
+                ),
+            onPressed: () => debugPrint('Access'),
+            child: <Widget>() {
+              switch (child.runtimeType.toString()) {
+                case "String":
+                  return Text(
+                    child,
+                    softWrap: true,
+                    style: TextStyle(
+                      fontSize: fontSize ?? 12,
+                      fontFamily: 'Poppins',
+                      fontWeight: fontWeight ?? FontWeight.w300,
+                      color: color ?? Colors.white,
+                    ),
+                  );
+                case "Icon":
+                  return child;
+                default:
+                  return SizedBox();
+              }
+            }(),
+          );
   }
 }
