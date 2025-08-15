@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
 
 class Button extends StatelessWidget {
+  final FontWeight? fontWeight;
+  final double? fontSize;
+  final Color? color;
+  final Color? backgroundColor;
+  final dynamic child;
+  final double? width;
+  final VoidCallback? onPressed;
+
+  /// `ImageIcon` or `Icon`.
+  final dynamic icon;
+
   Button({
     super.key,
     this.fontWeight,
@@ -9,6 +20,7 @@ class Button extends StatelessWidget {
     this.color,
     this.width,
     this.icon,
+    this.onPressed,
     required this.child,
   });
 
@@ -22,13 +34,6 @@ class Button extends StatelessWidget {
           ),
         ),
       );
-  final FontWeight? fontWeight;
-  final double? fontSize;
-  final Color? color;
-  final Color? backgroundColor;
-  final dynamic child;
-  final double? width;
-  final Icon? icon;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +55,7 @@ class Button extends StatelessWidget {
                         )
                       : null,
                 ),
-            onPressed: () => debugPrint('Access'),
+            onPressed: onPressed,
             label: <Widget>() {
               switch (child.runtimeType.toString()) {
                 case "String":

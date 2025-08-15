@@ -18,7 +18,8 @@ abstract class CarouselEvent {
 }
 
 class LoadCarouselImages extends CarouselEvent {
-  final List<String> initialImageList;
+  /// `String` || `Widget`
+  final List<dynamic> initialImageList;
 
   const LoadCarouselImages({required this.initialImageList});
 }
@@ -30,7 +31,8 @@ abstract class CarouselState {
 class CarouselInitial extends CarouselState {}
 
 class CarouselLoaded extends CarouselState {
-  final List<String> images;
+  /// `String` || `Widget`
+  final List<dynamic> images;
 
   const CarouselLoaded({required this.images});
 }

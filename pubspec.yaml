@@ -11,6 +11,8 @@ dependencies:
     sdk: flutter
   bloc: ^9.0.0
   flutter_bloc: ^9.1.1
+  http: ^1.5.0
+  equatable: ^2.0.7
 
 dev_dependencies:
   flutter_test:
@@ -31,6 +33,10 @@ flutter:
     - assets/images/expandir.webp
     - assets/images/title.webp
     - assets/images/carousel/Bono Bienvenida (2240 x 1120 px).webp
+    - assets/images/carousel/1800x900_pr_v2.webp
+    - assets/images/carousel/ASTROPAY-1_2240x1120[1].webp
+    - assets/images/carousel/1800x900_v3_1x.webp
+    - assets/images/carousel/casino_inicio_bonos_8000_mobile.webp
     - assets/images/pgsoft_68.webp
     - assets/images/pgsoft_98.webp
     - assets/images/pgsoft_126.webp

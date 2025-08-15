@@ -1,12 +1,13 @@
 import 'dart:async';
-import 'dart:math' show min;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fun88/blocs/carousel_bloc.dart';
 
 class ImageCarousel extends StatefulWidget {
   final double height;
-  final List<String> initialImageList;
+
+  /// String | Widget
+  final List<dynamic> initialImageList;
   final bool showThreeItems;
   final double viewportFraction;
   final Duration autoScrollInterval;
@@ -43,7 +44,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
     );
   }
 
-  void _startAutoScroll(List<String> images) {
+  void _startAutoScroll(List<dynamic> images) {
     _timer?.cancel();
 
     if (images.length > 1) {
@@ -88,7 +89,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
     }
   }
 
-  List<String> _effectiveImages(List<String> images) {
+  List<dynamic> _effectiveImages(List<dynamic> images) {
     if (images.isEmpty) return [];
     return [
       images.last, // Add last item at beginning
@@ -98,7 +99,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
   }
 
   // Add this method to handle page changes
-  void _handlePageChange(int page, List<String> images) {
+  void _handlePageChange(int page, List<dynamic> images) {
     if (!mounted) return;
 
     setState(() {
@@ -157,9 +158,9 @@ class _ImageCarouselState extends State<ImageCarousel> {
     );
   }
 
-  Widget _buildCarousel(List<String> images) {
+  Widget _buildCarousel(List<dynamic> images) {
     final effectiveImages = _effectiveImages(images);
-    final screenWidth = MediaQuery.of(context).size.width;
+    if (images.isEmpty) return SizedBox();
 
     return NotificationListener<ScrollNotification>(
       child: SizedBox(
@@ -190,10 +191,14 @@ class _ImageCarouselState extends State<ImageCarousel> {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(12),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(24),
-                    child: _buildImage(effectiveImages[index]),
-                  ),
+                  child: effectiveImages[index].runtimeType == String
+                      ? ClipRRect(
+                          borderRadius: BorderRadius.circular(24),
+                          child: _buildImage(effectiveImages[index]),
+                        )
+                      : effectiveImages[index].runtimeType == ColoredBox
+                      ? effectiveImages[index]
+                      : SizedBox(),
                 ),
               ),
             );
